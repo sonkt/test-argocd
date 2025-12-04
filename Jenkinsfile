@@ -6,6 +6,8 @@ pipeline {
         // Thay ID credentials bạn vừa tạo ở Bước 3 vào đây
         DOCKER_CREDS_ID = 'docker-hub-credentials'
         EMAIL = 'sonkt@outlook.com'
+        GIT_CREDS = 'github-token-creds'        
+        GIT_REPO_URL = 'github.com/sonkt/test-argocd.git'
     }
     stages {
         stage('Build Docker Image') {
