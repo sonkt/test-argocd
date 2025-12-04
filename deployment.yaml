@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: web-container
-        image: sonkhieu/argocd_test:v1  # <--- Thay user của bạn vào đây
+        image: sonkhieu/argocd_test:latest
         ports:
         - containerPort: 80
 ---
