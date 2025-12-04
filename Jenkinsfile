@@ -30,7 +30,6 @@ pipeline {
                     docker.withRegistry('', env.DOCKER_CREDS) {
                         def appInfo = docker.build("${env.DOCKER_IMAGE}:${imageTag}")
                         appInfo.push()
-                        appInfo.push('latest')
                     }
                 }
             }
