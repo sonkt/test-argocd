@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: web-container
-        image: sonkhieu/argocd_test:24
+        image: sonkhieu/argocd_test:25
         ports:
         - containerPort: 80
 ---
