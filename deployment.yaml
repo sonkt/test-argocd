@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-web
+  template:
+    metadata:
+      labels:
+        app: my-web
+    spec:
+      containers:
+      - name: web-container
+        image: sonkhieu/argocd_test:v1  # <--- Thay user của bạn vào đây
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-web-service
+spec:
+  type: LoadBalancer # Để map ra port 8081 của máy bạn
+  selector:
+    app: my-web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
