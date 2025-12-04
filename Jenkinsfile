@@ -58,7 +58,7 @@ pipeline {
                             
                             # --- SỬA LỖI TẠI DÒNG NÀY ---
                             # Đã thêm env. vào trước user và pass
-                            git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@${env.GIT_REPO_URL} HEAD:main
+                            git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@${env.GIT_REPO_URL} HEAD:master
                         """
                     }
                 }
