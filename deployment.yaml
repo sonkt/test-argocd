@@ -23,10 +23,29 @@ kind: Service
 metadata:
   name: my-web-service
 spec:
-  type: LoadBalancer # Để map ra port 8081 của máy bạn
+  type: ClusterIP # Để map ra port 8081 của máy bạn
   selector:
     app: my-web
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
+---
+# PHẦN MỚI THÊM VÀO: INGRESS
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-web-ingress
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false" # Tắt bắt buộc HTTPS để test local cho dễ
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-web-service
+            port:
+              number: 80
