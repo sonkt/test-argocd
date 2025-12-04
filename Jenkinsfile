@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         // Thay tên image của bạn vào đây
-        DOCKER_IMAGE = 'sonkhieu/argocd_test:latest'
+        DOCKER_IMAGE = 'sonkhieu/argocd_test'
         // Thay ID credentials bạn vừa tạo ở Bước 3 vào đây
         DOCKER_CREDS_ID = 'docker-hub-credentials'
     }
