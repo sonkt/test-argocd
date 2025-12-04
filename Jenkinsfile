@@ -5,6 +5,7 @@ pipeline {
         DOCKER_IMAGE = 'sonkhieu/argocd_test'
         // Thay ID credentials bạn vừa tạo ở Bước 3 vào đây
         DOCKER_CREDS_ID = 'docker-hub-credentials'
+        EMAIL = 'sonkt@outlook.com'
     }
     stages {
         stage('Build Docker Image') {
@@ -29,7 +30,7 @@ pipeline {
             steps {
                 script {
                     // Cấu hình Git trong Jenkins
-                    sh "git config user.email '${EMAIL}'"
+                    sh "git config user.email '${env.EMAIL}'"
                     sh "git config user.name 'Jenkins Bot'"
                     
                     // Thay thế version cũ bằng version mới trong file deployment.yaml
