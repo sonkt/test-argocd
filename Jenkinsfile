@@ -6,7 +6,9 @@ pipeline {
         // Thay ID credentials bạn vừa tạo ở Bước 3 vào đây
         DOCKER_CREDS_ID = 'docker-hub-credentials'
         EMAIL = 'sonkt@outlook.com'
+        GIT_USERNAME="sonkt"
         GIT_CREDS = 'github-token-creds'        
+        GIT_PASSWORD=""
         GIT_REPO_URL = 'github.com/sonkt/test-argocd.git'
     }
     stages {
@@ -40,11 +42,11 @@ pipeline {
                     sh "sed -i 's|image: ${DOCKER_IMAGE}:.*|image: ${DOCKER_IMAGE}:${env.BUILD_NUMBER}|g' deployment.yaml"
                     
                     // Commit và Push ngược lại GitHub
-                    withCredentials([usernamePassword(credentialsId: GIT_CREDS, passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    withCredentials([usernamePassword(credentialsId: env.GIT_CREDS, passwordVariable: 'env.GIT_PASSWORD', usernameVariable: 'env.GIT_USERNAME')]) {
                         sh "git add deployment.yaml"
                         sh "git commit -m 'Jenkins update image version to v${env.BUILD_NUMBER}'"
                         // Push dùng Token
-                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@${GIT_REPO_URL} HEAD:main"
+                        sh "git push https://${env.GIT_USERNAME}:${GIT_PASSWORD}@${env.GIT_REPO_URL} HEAD:main"
                     }
                 }
             }
